@@ -3,10 +3,12 @@
 #include <stdlib.h>
 #include <string.h> 
 #include "cryptlib.h"
-
+#include <iostream>
+#include <fstream>
+char entradaArchivo[2000];
 /* prototipos funciones */
 void leerEntrada(char* cadena);
-char* leerArchivo();
+void leerArchivo();
 char MENU();
 int aplicarAES(char* mensaje, char* clave);
 
@@ -16,7 +18,7 @@ int main(){
 	/* declaración devariables de trabajo	*/
 	char entradaTexto[300];
 	char contrasenia_ingreso[300];
-	char *entradaArchivo;
+
 	int salir = false;
 
 	while (!salir){
@@ -26,8 +28,9 @@ int main(){
 		//Aplicar AES al contenido del archivo
 		case '1':
 			system("cls");
-			entradaArchivo = leerArchivo();
+			leerArchivo();
 			if (entradaArchivo != NULL){
+
 				if (entradaArchivo != " "){
 					system("cls");
 					printf("Ingrese la contrasenia para cifrar: ");
@@ -85,12 +88,12 @@ void leerEntrada(char* cadena){
 		*p = '\0';  //lo reemplazamos con fin de cadena
 }
 
-char* leerArchivo(){
+void leerArchivo(){
 	FILE *archivo;
 
-	char caracteres[100];
+	char caracteres[100]="";
 	char palabra[2000] = "";
-	char nombreArchivo[30] = "mensaje.txt";
+	char* nombreArchivo = "mensaje.txt";
 
 	archivo = fopen(nombreArchivo, "r");
 
@@ -98,14 +101,12 @@ char* leerArchivo(){
 		exit(1);
 
 	while (feof(archivo) == 0){
-		strcat(palabra, caracteres);
+		strcat(entradaArchivo, caracteres);
 		fgets(caracteres, 100, archivo);
 
 	}
-	printf("%s", palabra);
 
 	fclose(archivo);
-	return palabra;
 }
 
 char MENU(){
