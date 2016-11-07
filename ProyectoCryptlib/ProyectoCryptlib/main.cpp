@@ -101,11 +101,12 @@ void leerArchivo(){
 		exit(1);
 
 	while (feof(archivo) == 0){
-		strcat(entradaArchivo, caracteres);
+		strcat(palabra, caracteres);
 		fgets(caracteres, 100, archivo);
 
 	}
-
+	strcpy(entradaArchivo, palabra);
+	system("pause");
 	fclose(archivo);
 }
 

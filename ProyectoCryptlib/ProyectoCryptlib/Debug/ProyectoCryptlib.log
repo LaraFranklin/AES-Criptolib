@@ -1,9 +1,8 @@
-﻿Build started 7/11/2016 23:07:48.
-     1>Project "F:\Proyecyos_git\AES-Criptolib\ProyectoCryptlib\ProyectoCryptlib\ProyectoCryptlib.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         ProyectoCryptlib.vcxproj -> F:\Proyecyos_git\AES-Criptolib\ProyectoCryptlib\Debug\ProyectoCryptlib.exe
-     1>Done Building Project "F:\Proyecyos_git\AES-Criptolib\ProyectoCryptlib\ProyectoCryptlib\ProyectoCryptlib.vcxproj" (Build target(s)).
+﻿Build started 7/11/2016 23:24:55.
+     1>Project "F:\Proyecyos_git\AES-Criptolib\ProyectoCryptlib\ProyectoCryptlib\ProyectoCryptlib.vcxproj" on node 2 (Clean target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets(76,5): warning : Access to the path 'f:\proyecyos_git\aes-criptolib\proyectocryptlib\debug\proyectocryptlib.exe' is denied.
+     1>Done Building Project "F:\Proyecyos_git\AES-Criptolib\ProyectoCryptlib\ProyectoCryptlib\ProyectoCryptlib.vcxproj" (Clean target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.08
+Time Elapsed 00:00:00.06
