@@ -8,13 +8,14 @@
 void leerEntrada(char* cadena);
 char* leerArchivo();
 char MENU();
-int aplicarAES(char* mensaje);
+int aplicarAES(char* mensaje, char* clave);
 
 
 int main(){
 
 	/* declaración devariables de trabajo	*/
-	char entradaTexto[100];
+	char entradaTexto[300];
+	char contrasenia_ingreso[300];
 	char *entradaArchivo;
 	int salir = false;
 
@@ -28,7 +29,13 @@ int main(){
 			entradaArchivo = leerArchivo();
 			if (entradaArchivo != NULL){
 				if (entradaArchivo != " "){
-					aplicarAES(entradaArchivo);
+					system("cls");
+					printf("Ingrese la contrasenia para cifrar: ");
+					fflush(stdin);
+					leerEntrada(contrasenia_ingreso);
+
+					printf("\n");
+					aplicarAES(entradaArchivo, contrasenia_ingreso);
 				}
 				else
 					printf("%s\n","Archivo Vacio");
@@ -44,9 +51,12 @@ int main(){
 			printf("Ingrese un mensaje:\n"); 
 			fflush(stdin);
 			leerEntrada(entradaTexto);
+			printf("Ingrese la contrasenia para cifrar: ");
+			fflush(stdin);
+			leerEntrada(contrasenia_ingreso);
 
 			printf("\n");
-			aplicarAES(entradaTexto);
+			aplicarAES(entradaTexto, contrasenia_ingreso);
 			break;
 		//Salir
 		case '3':
@@ -76,24 +86,27 @@ void leerEntrada(char* cadena){
 }
 
 char* leerArchivo(){
-	FILE* miArchivo;
-	char* nombreArchivo = "../data/mensaje.txt";
-	char lectura[1000] = "";
-	char mensaje[2000] = "";
-	int endoffile = 0;
+	FILE *archivo;
 
-	miArchivo = fopen(nombreArchivo, "r");
-	if (miArchivo == NULL)return NULL;
+	char caracteres[100];
+	char palabra[2000] = "";
+	char nombreArchivo[30] = "mensaje.txt";
 
-	endoffile = fscanf(miArchivo, " %[^\n]", &lectura);
-	while (endoffile != EOF){
-		//strcat(lectura, "\n");
-		strcat(mensaje, lectura);
-		endoffile = fscanf(miArchivo, " %[^\n]", &lectura);
+	archivo = fopen(nombreArchivo, "r");
+
+	if (archivo == NULL)
+		exit(1);
+
+	while (feof(archivo) == 0){
+		strcat(palabra, caracteres);
+		fgets(caracteres, 100, archivo);
+
 	}
-	return mensaje;
-}
+	printf("%s", palabra);
 
+	fclose(archivo);
+	return palabra;
+}
 
 char MENU(){
 	char op;
@@ -113,11 +126,10 @@ char MENU(){
 }
 
 
-int aplicarAES(char* mensaje){
+int aplicarAES(char* mensaje, char* clave){
 	//Definicion de variables -------------------------------------------
 	int dataSize = strlen(mensaje);
 	unsigned char data[1024];
-	char clave[] = "clavedeprueba123";
 	const int claveSize = 16;
 	unsigned char iv[] = "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
 	char * ivStr = "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";//Solo para mostrar
